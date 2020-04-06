@@ -6,9 +6,10 @@ class Light extends Component {
     super(props)
     this.handleClick = this.handleClick.bind(this)
   }
-  handleClick() {}
+  handleClick() {
+    this.props.flipCell()
+  }
   render() {
-    console.log(this.props.light)
     return (
       <td
         className={`Light ${this.props.light}`}
@@ -19,3 +20,6 @@ class Light extends Component {
 }
 
 export default Light
+
+//10,01,12,21 = 11
+//12,21,23,32 = 22
