@@ -21,5 +21,3 @@ class Light extends Component {
 
 export default Light
 
-//10,01,12,21 = 11
-//12,21,23,32 = 22

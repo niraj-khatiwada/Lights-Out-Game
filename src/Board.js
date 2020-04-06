@@ -6,8 +6,8 @@ class Board extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      light: true,
       boardTable: this.createBoard(),
+      hasWon: false,
     }
     this.flipCell = this.flipCell.bind(this)
   }
@@ -51,6 +51,12 @@ class Board extends Component {
         })
       }
     }
+
+    this.setState({
+      hasWon: this.state.boardTable.every((row) =>
+        row.every((light) => light === false)
+      ),
+    })
   }
   render() {
     let renderBoard = []
