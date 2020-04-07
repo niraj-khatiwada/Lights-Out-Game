@@ -20,4 +20,3 @@ class Light extends Component {
 }
 
 export default Light
-

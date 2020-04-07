@@ -28,26 +28,21 @@ class Board extends Component {
     }
     return c
   }
+
   flipCell(co) {
-    let self = `${co[0]}${co[1]}`
-    let left = `${co[0]}${Math.abs(co[1] - 1)}`
-    let top = `${Math.abs(co[0]) - 1}${co[1]}`
-    let right = `${co[0]}${co[1] + 1}`
-    let buttom = `${co[0] + 1}${co[1]}`
-    const colorFlipArray = [self, left, top, right, buttom]
-    console.log(left, right, top, buttom)
-    console.log(co)
+    let [x, y] = co
+    let left = [x - 1, y]
+    let top = [x, y - 1]
+    let right = [x + 1, y]
+    let buttom = [x, y + 1]
+    let colorFlipArray = [co, left, top, right, buttom]
+
     for (let value of colorFlipArray) {
-      if (
-        parseInt(value[0]) >= 0 &&
-        parseInt(value[0]) < this.props.rows &&
-        parseInt(value[1]) >= 0 &&
-        parseInt(value[1]) < this.props.columns
-      ) {
-        this.state.boardTable[parseInt(value[0])][parseInt(value[1])] = !this
-          .state.boardTable[parseInt(value[0])][parseInt(value[1])]
+      let [a, b] = value
+      if (a >= 0 && a < this.props.rows && b >= 0 && b < this.props.columns) {
+        this.state.boardTable[a][b] = !this.state.boardTable[a][b]
         this.setState({
-          board: this.state.boardTable[parseInt(value[0])][parseInt(value[1])],
+          board: this.state.boardTable[a][b],
         })
       }
     }
@@ -76,6 +71,7 @@ class Board extends Component {
     }
     return (
       <div className="Board">
+        <h1 style={{textAlign:"center"}}>{this.state.hasWon ? 'You Won' : 'Lights Out'}</h1>
         <table className="Board-table">
           <tbody>{renderBoard}</tbody>
         </table>
